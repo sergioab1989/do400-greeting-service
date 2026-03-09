@@ -21,6 +21,14 @@ pipeline{
             }
         }
 
-        // Add the "Deploy" stage here
+        stage('Deploy') {
+            steps {
+                sh '''
+                    oc project mcqvhc-greetings
+                    oc start-build greeting-service --follow --wait
+                    '''
+                
+            }
+        }
     }
 }
